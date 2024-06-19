@@ -37,7 +37,7 @@ function getActiveTextContent() {
 
 
 export function activate(context: vscode.ExtensionContext) {
-	const decryptDispose = vscode.commands.registerCommand('bonelab-save-editor.decryptSave', function() {
+	const decryptDispose = vscode.commands.registerCommand('bonelab-save-editor.decrypt-save', function() {
 		// Get the active text editor
 		const editor = vscode.window.activeTextEditor;
 
@@ -65,7 +65,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-    const encryptDispose = vscode.commands.registerCommand('bonelab-save-editor.encryptSave', function() {
+    const encryptDispose = vscode.commands.registerCommand('bonelab-save-editor.encrypt-save', function() {
 		// Get the active text editor
 		const editor = vscode.window.activeTextEditor;
 
