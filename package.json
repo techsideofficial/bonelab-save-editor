@@ -4,7 +4,7 @@
   "icon": "assets/bonelab-icon-trans.png",
   "publisher": "ArpaRec",
   "description": "A tool to edit BONELAB Save Game files.",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "engines": {
     "vscode": "^1.90.0"
   },
