@@ -1,7 +1,7 @@
 {
   "name": "bonelab-save-editor",
   "displayName": "BONELAB Save Editor",
-  "icon": "assets/iconwhite.png",
+  "icon": "assets/bonelab-icon-trans.png",
   "publisher": "ArpaRec",
   "description": "A tool to edit BONELAB Save Game files.",
   "version": "1.0.0",
@@ -30,14 +30,14 @@
         {
           "id": "cryptwindow",
           "title": "BONELAB Save Editor",
-          "icon": "assets/iconwhite.png"
+          "icon": "assets/bonelab-icon-trans.png"
         }
       ]
     },
     "viewsWelcome": [
       {
         "view": "cryptwindow-page",
-        "contents": "Open a BONELAB Save file, and select all. [Encrypt](command:bonelab-save-editor.encrypt-save)\n[Decrypt](command:bonelab-save-editor.decrypt-save)",
+        "contents": "Open a BONELAB Save file, and select all.\n[Encrypt](command:bonelab-save-editor.encrypt-save)\n[Decrypt](command:bonelab-save-editor.decrypt-save)",
         "when": "true"
       }
     ],
