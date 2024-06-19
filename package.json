@@ -1,0 +1,71 @@
+{
+  "name": "bonelab-save-editor",
+  "displayName": "bonelab-save-editor",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "bonelab-save-editor.encryptSave",
+        "title": "Encrypt Save"
+      },
+      {
+        "command": "bonelab-save-editor.decryptSave",
+        "title": "Decrypt Save"
+      }
+    ],
+
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "cryptwindow",
+          "title": "BONELAB Save Editor",
+          "icon": "assets/iconwhite.svg"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "cryptwindow-page",
+        "contents": "[Encrypt](command:bonelab-save-editor.encryptSave)\n[Decrypt](command:bonelab-save-editor.decryptSave)",
+        "when": "true"
+      }
+    ],
+    "views": {
+      "cryptwindow": [
+        {
+          "id": "cryptwindow-page",
+          "name": "BONELAB Save Editor",
+          "type": "tree"
+        }
+      ]
+    }
+},
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.3",
+    "@types/node": "^18",
+    "@types/vscode": "^1.73.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "@vscode/test-electron": "^2.3.9",
+    "eslint": "^8.26.0",
+    "glob": "^7.1.6",
+    "typescript": "^5.4.2"
+  }
+}
