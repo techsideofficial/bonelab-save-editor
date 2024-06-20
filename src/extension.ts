@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
 import * as crypto from 'crypto';
 import { GetAllText } from './helpers/wb_textUtils';
-import { FormatDoc } from './helpers/wb_formatDoc';
 
 const algorithm = 'aes-256-cbc';
 const key = "oursavebythiskeyhiddenpleasewait";
@@ -20,25 +19,6 @@ function decrypt(encryptedText: string): string {
     decrypted += decipher.final('utf-8');
     return decrypted;
 }
-
-function getActiveTextContent() {
-    // Get the active text editor
-    const editor = vscode.window.activeTextEditor;
-
-    if (editor) {
-        let document = editor.document;
-
-        // Get the document text
-        const documentText = document.getText();
-
-        return documentText;
-    } else {
-        return "invalid";
-    }
-};
-
-
-
 
 export function activate(context: vscode.ExtensionContext) {
 	const decryptDispose = vscode.commands.registerCommand('bonelab-save-editor.decrypt-save', function() {

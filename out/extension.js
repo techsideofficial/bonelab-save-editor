@@ -42,20 +42,6 @@ function decrypt(encryptedText) {
     decrypted += decipher.final('utf-8');
     return decrypted;
 }
-function getActiveTextContent() {
-    // Get the active text editor
-    const editor = vscode.window.activeTextEditor;
-    if (editor) {
-        let document = editor.document;
-        // Get the document text
-        const documentText = document.getText();
-        return documentText;
-    }
-    else {
-        return "invalid";
-    }
-}
-;
 function activate(context) {
     const decryptDispose = vscode.commands.registerCommand('bonelab-save-editor.decrypt-save', function () {
         // Get the active text editor
