@@ -1,5 +1,7 @@
 import * as vscode from 'vscode';
 import * as crypto from 'crypto';
+import { GetAllText } from './helpers/wb_textUtils';
+import { FormatDoc } from './helpers/wb_formatDoc';
 
 const algorithm = 'aes-256-cbc';
 const key = "oursavebythiskeyhiddenpleasewait";
@@ -36,6 +38,8 @@ function getActiveTextContent() {
 };
 
 
+
+
 export function activate(context: vscode.ExtensionContext) {
 	const decryptDispose = vscode.commands.registerCommand('bonelab-save-editor.decrypt-save', function() {
 		// Get the active text editor
@@ -47,7 +51,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const selection = editor.selection;
 
             //Getting the text
-            const word = document.getText(selection);
+            const word = GetAllText();
             const objectData = JSON.parse(word);
 
             //unlocks
@@ -59,9 +63,12 @@ export function activate(context: vscode.ExtensionContext) {
             objectData["progression"] = JSON.parse(progressionText);
 
             //Replace The Text
-			editor.edit(editBuilder => {
-				editBuilder.replace(selection, JSON.stringify(objectData));
-			});
+            editor.edit(builder => {
+                const doc = editor.document;
+                builder.replace(new vscode.Range(doc.lineAt(0).range.start, doc.lineAt(doc.lineCount - 1).range.end), JSON.stringify(objectData));
+            });
+
+            // vscode.commands.executeCommand('editor.action.formatDocument')
 		}
 	});
 
@@ -75,7 +82,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const selection = editor.selection;
 
             //Getting the text
-            const word = document.getText(selection);
+            const word = GetAllText();
             const objectData = JSON.parse(word);
 
             //unlocks
@@ -87,9 +94,12 @@ export function activate(context: vscode.ExtensionContext) {
             objectData["progression"] = encryptedProgression;
 
             //Replace The Text
-			editor.edit(editBuilder => {
-				editBuilder.replace(selection, JSON.stringify(objectData));
-			});
+            editor.edit(builder => {
+                const doc = editor.document;
+                builder.replace(new vscode.Range(doc.lineAt(0).range.start, doc.lineAt(doc.lineCount - 1).range.end), JSON.stringify(objectData));
+            });
+
+            // vscode.commands.executeCommand('editor.action.formatDocument')
 		}
 	});
 

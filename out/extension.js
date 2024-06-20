@@ -26,6 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.activate = void 0;
 const vscode = __importStar(require("vscode"));
 const crypto = __importStar(require("crypto"));
+const wb_textUtils_1 = require("./helpers/wb_textUtils");
 const algorithm = 'aes-256-cbc';
 const key = "oursavebythiskeyhiddenpleasewait";
 const iv = "itsnotverysecure";
@@ -64,7 +65,7 @@ function activate(context) {
             const document = editor.document;
             const selection = editor.selection;
             //Getting the text
-            const word = document.getText(selection);
+            const word = (0, wb_textUtils_1.GetAllText)();
             const objectData = JSON.parse(word);
             //unlocks
             const unlocksText = decrypt(objectData["unlocks"]);
@@ -73,9 +74,11 @@ function activate(context) {
             const progressionText = decrypt(objectData["progression"]);
             objectData["progression"] = JSON.parse(progressionText);
             //Replace The Text
-            editor.edit(editBuilder => {
-                editBuilder.replace(selection, JSON.stringify(objectData));
+            editor.edit(builder => {
+                const doc = editor.document;
+                builder.replace(new vscode.Range(doc.lineAt(0).range.start, doc.lineAt(doc.lineCount - 1).range.end), JSON.stringify(objectData));
             });
+            // vscode.commands.executeCommand('editor.action.formatDocument')
         }
     });
     const encryptDispose = vscode.commands.registerCommand('bonelab-save-editor.encrypt-save', function () {
@@ -86,7 +89,7 @@ function activate(context) {
             const document = editor.document;
             const selection = editor.selection;
             //Getting the text
-            const word = document.getText(selection);
+            const word = (0, wb_textUtils_1.GetAllText)();
             const objectData = JSON.parse(word);
             //unlocks
             const encryptedUnlocks = encrypt(JSON.stringify(objectData["unlocks"]));
@@ -95,9 +98,11 @@ function activate(context) {
             const encryptedProgression = encrypt(JSON.stringify(objectData["progression"]));
             objectData["progression"] = encryptedProgression;
             //Replace The Text
-            editor.edit(editBuilder => {
-                editBuilder.replace(selection, JSON.stringify(objectData));
+            editor.edit(builder => {
+                const doc = editor.document;
+                builder.replace(new vscode.Range(doc.lineAt(0).range.start, doc.lineAt(doc.lineCount - 1).range.end), JSON.stringify(objectData));
             });
+            // vscode.commands.executeCommand('editor.action.formatDocument')
         }
     });
     context.subscriptions.push(decryptDispose);
