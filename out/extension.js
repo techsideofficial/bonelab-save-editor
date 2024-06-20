@@ -62,9 +62,9 @@ function activate(context) {
             //Replace The Text
             editor.edit(builder => {
                 const doc = editor.document;
-                builder.replace(new vscode.Range(doc.lineAt(0).range.start, doc.lineAt(doc.lineCount - 1).range.end), JSON.stringify(objectData));
+                builder.replace(selection, JSON.stringify(objectData));
             });
-            // vscode.commands.executeCommand('editor.action.formatDocument')
+            vscode.commands.executeCommand('editor.action.formatDocument');
         }
     });
     const encryptDispose = vscode.commands.registerCommand('bonelab-save-editor.encrypt-save', function () {
@@ -86,9 +86,9 @@ function activate(context) {
             //Replace The Text
             editor.edit(builder => {
                 const doc = editor.document;
-                builder.replace(new vscode.Range(doc.lineAt(0).range.start, doc.lineAt(doc.lineCount - 1).range.end), JSON.stringify(objectData));
+                builder.replace(selection, JSON.stringify(objectData));
             });
-            // vscode.commands.executeCommand('editor.action.formatDocument')
+            vscode.commands.executeCommand('editor.action.formatDocument');
         }
     });
     context.subscriptions.push(decryptDispose);

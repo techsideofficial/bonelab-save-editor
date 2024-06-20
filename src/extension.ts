@@ -45,10 +45,10 @@ export function activate(context: vscode.ExtensionContext) {
             //Replace The Text
             editor.edit(builder => {
                 const doc = editor.document;
-                builder.replace(new vscode.Range(doc.lineAt(0).range.start, doc.lineAt(doc.lineCount - 1).range.end), JSON.stringify(objectData));
+                builder.replace(selection, JSON.stringify(objectData));
             });
 
-            // vscode.commands.executeCommand('editor.action.formatDocument')
+            vscode.commands.executeCommand('editor.action.formatDocument')
 		}
 	});
 
@@ -76,10 +76,10 @@ export function activate(context: vscode.ExtensionContext) {
             //Replace The Text
             editor.edit(builder => {
                 const doc = editor.document;
-                builder.replace(new vscode.Range(doc.lineAt(0).range.start, doc.lineAt(doc.lineCount - 1).range.end), JSON.stringify(objectData));
+                builder.replace(selection, JSON.stringify(objectData));
             });
 
-            // vscode.commands.executeCommand('editor.action.formatDocument')
+            vscode.commands.executeCommand('editor.action.formatDocument')
 		}
 	});
 
