@@ -4,6 +4,10 @@ All notable changes to the "bonelab-save-editor" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
+## [3.0.0]
 
-- Initial release
+### Added
+- Automatic formatting of code.
+
+### Fixed
+- Inline buttons.
